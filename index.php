@@ -2,7 +2,7 @@
 include("config/app.php"); 
 include("html/header.php"); 
 include("fct/item.php");
-
+include("fct/request.php");
 
 // traitement de nouvel item 
 if(!file_exists(FILE_NAME)){
