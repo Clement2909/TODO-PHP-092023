@@ -8,3 +8,12 @@ function post($name,$default =null){
         return $default;
     }
 }
+
+function get($name,$default =null){
+    if(isset($_GET[$name])){
+        return htmlentities($_GET[$name]);
+    }
+    else{
+        return $default;
+    }
+}

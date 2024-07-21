@@ -1,6 +1,13 @@
 <?php 
 include("config/app.php"); 
 include("html/header.php"); 
+include("fct/item.php");
+
+
+// traitement de nouvel item 
+if(!file_exists(FILE_NAME)){
+  file_put_contents(FILE_NAME,serialize([]));
+}
 ?>
 
         <div class="row">
@@ -19,28 +26,20 @@ include("html/header.php");
                 <!-- formulaire -->
                 <form action="addItem.php" method="POST">
                 <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" name="intituler">
+                  <input type="text" class="form-control" name="intitule">
                   <span class="input-group-append">
                     <button type="submit" class="btn btn-info btn-flat">+</button>
                   </span>
                 </div>
                 </form>
+                <!-- liste -->
                 <ul class="todo-list" data-widget="todo-list">
-                  <li>
-                    <!-- drag handle -->
-                    <!-- checkbox -->
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                      <label for="todoCheck1"></label>
-                    </div>
-                    <!-- todo text -->
-                    <span class="text">Design a nice theme</span>
-                    <!-- General tools such as edit or delete-->
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash"></i>
-                    </div>
-                  </li>
+                 <?php
+                 $items = getItem();
+                   foreach($items as $key => $item)  {
+                      echo displayItem($key,$item);
+                   }
+                 ?>
                   
                 </ul>
               </div>
